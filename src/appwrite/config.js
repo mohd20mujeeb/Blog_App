@@ -33,7 +33,7 @@ try {
 }
 
 async updatePost(slug,{title,content,featuredImage,status}){try {
-   return await this.databases.updateDocument{
+   return await this.databases.updateDocument(
     conf.appwriteDatabaseId,
     conf.appwriteCollectionId,
     slug,
@@ -44,7 +44,7 @@ async updatePost(slug,{title,content,featuredImage,status}){try {
         status,
     }
 
-   } 
+)
 } catch (error) {
     console.log("Appwrite service :: updatePost :: error",error);
 }
@@ -76,6 +76,7 @@ async getPost(slug){
         return false
     }
 }
+
 async getPosts(queries=[Query.equal("status","active")]){
     try {
         return await this.databases.listDocuments(
